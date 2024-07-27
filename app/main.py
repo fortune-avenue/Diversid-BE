@@ -1,6 +1,6 @@
 from fastapi import FastAPI
-from database import Base, engine
-from routers import user, face_ktp_matcher
+from .database import Base, engine
+from .routers import user, face_ktp_matcher
 from middleware.file_upload_middleware import FileUploadMiddleware
 
 # Create the database tables
