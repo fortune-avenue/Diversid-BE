@@ -1,9 +1,16 @@
+setuptools
 deepface==0.0.92
+resemblyzer==0.1.4
+ultralytics
+pydub==0.25.1
 fastapi==0.111.1
 numpy==1.23.5
 Pillow==10.4.0
 pydantic==1.10.12
 python-dotenv==1.0.1
 SQLAlchemy==2.0.25
-psycopg2==2.9.9 
+psycopg2-binary==2.9.9 
 starlette==0.37.2
+passlib==1.7.4
+gcloud==0.18.3
+tf-keras==2.17.0

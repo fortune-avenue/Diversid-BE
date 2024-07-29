@@ -1,15 +1,16 @@
+from app.db.database import Database
 from fastapi import FastAPI
-from .database import Base, engine
-from .routers import user, face_ktp_matcher
-from middleware.file_upload_middleware import FileUploadMiddleware
 
-# Create the database tables
-Base.metadata.create_all(bind=engine)
+# Include the routes
+from app.routers.user_route import router as user_router
+from app.routers.voice_route import router as voice_router
+from app.routers.face_ktp_matcher import router as face_router
 
+# setup db
+db = Database()
 app = FastAPI()
 
+app.include_router(user_router)
+app.include_router(voice_router)
+app.include_router(face_router)
 
-app.add_middleware(FileUploadMiddleware)
-
-app.include_router(user.router)
-app.include_router(face_ktp_matcher.router)

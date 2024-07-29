@@ -22,11 +22,14 @@ venv
 docs.zip
 archive.zip
 .env
+key.json
 
 # vim temporary files
 *~
 .*.sw?
 .cache
+
+service_account.json
 
 # macOS
 .DS_Store
