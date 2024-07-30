@@ -8,7 +8,7 @@ from app.routers.face_ktp_matcher import router as face_router
 
 # setup db
 db = Database()
-app = FastAPI()
+app = FastAPI(debug=True)
 
 app.include_router(user_router)
 app.include_router(voice_router)

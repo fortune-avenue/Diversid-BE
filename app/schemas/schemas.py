@@ -5,8 +5,9 @@ import uuid
 
 class UserCreate(BaseModel):
     email: EmailStr
-    mobile_no: str
+    full_name: str
     password_hash: str
+    mobile_no: Optional[str] = None
     ktp_photo: Optional[str] = None
     slf_ktp_photo: Optional[str] = None
     email_verified: Optional[bool] = None
@@ -14,6 +15,11 @@ class UserCreate(BaseModel):
 
 class UserLogin(BaseModel):
     email: EmailStr
+    password_hash: str
+
+class UserSignup(BaseModel):
+    email: EmailStr
+    full_name : str
     password: str
 
 class UserSchema(BaseModel):
@@ -47,3 +53,9 @@ class VoiceDataSchema(BaseModel):
 
     class Config:
         orm_mode = True
+
+
+class TokenDataSchema(BaseModel): 
+    user_id : uuid.UUID
+    access_token : Optional[str] = None
+    token_type : Optional[str] = None

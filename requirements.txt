@@ -4,6 +4,7 @@ resemblyzer==0.1.4
 ultralytics
 pydub==0.25.1
 fastapi==0.111.1
+python-jose[cryptography]==3.3.0
 numpy==1.23.5
 Pillow==10.4.0
 pydantic==1.10.12

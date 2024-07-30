@@ -19,7 +19,7 @@ def get_db():
     finally:
         db.close()
 
-@router.post("/create_voice", response_model=VoiceDataSchema)
+@router.post("/create-voice", response_model=VoiceDataSchema)
 async def create_voice(user_id: uuid.UUID = Form(...), 
                        voice_file_1: UploadFile = File(None), 
                        voice_file_2: UploadFile = File(None), 
@@ -61,7 +61,7 @@ async def create_voice(user_id: uuid.UUID = Form(...),
         raise HTTPException(status_code=400, detail=str(e))
 
 
-@router.post("/compare_voice")
+@router.post("/compare-voice")
 async def compare_voice(user_id: uuid.UUID = Form(...), file: UploadFile = File(...), db: Session = Depends(get_db)):
     try:
         bucket_name = "diversid-be"
