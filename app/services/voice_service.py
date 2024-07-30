@@ -5,6 +5,8 @@ from gcloud import storage
 from oauth2client.service_account import ServiceAccountCredentials
 import os
 import uuid
+import json
+from dotenv import load_dotenv
 from resemblyzer import VoiceEncoder, preprocess_wav
 from scipy.spatial.distance import cosine
 from pydub import AudioSegment
@@ -14,7 +16,19 @@ from fastapi import UploadFile
 if not os.getenv("GOOGLE_APPLICATION_CREDENTIALS"):
     os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "key.json"
 
-credentials = ServiceAccountCredentials.from_json_keyfile_name('key.json')
+load_dotenv()
+
+# Get the credentials JSON from the environment variable
+credentials_json = os.getenv('GOOGLE_APPLICATION_CREDENTIALS_JSON')
+
+if not credentials_json:
+    raise ValueError("GOOGLE_APPLICATION_CREDENTIALS_JSON environment variable is not set")
+
+# Parse the JSON string into a dictionary
+credentials_info = json.loads(credentials_json)
+
+# Create credentials object from the dictionary
+credentials = ServiceAccountCredentials.from_json_keyfile_dict(credentials_info)
 encoder = VoiceEncoder()
 
 def create_voice_data(db: Session, voice_data: VoiceDataCreate):
